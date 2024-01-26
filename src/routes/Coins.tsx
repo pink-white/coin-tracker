@@ -24,6 +24,8 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
   font-size: 48px;
   font-weight: 600;
+  position: relative;
+  left: -10px;
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`

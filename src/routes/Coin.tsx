@@ -18,9 +18,11 @@ import Loader from "../components/Loader";
 import ChangeTheme from "../components/ChangeTheme";
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 600;
   color: ${(props) => props.theme.accentColor};
+  position: relative;
+  left: -10px;
 `;
 
 const Container = styled.div`
