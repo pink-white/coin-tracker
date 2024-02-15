@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { fetchCoins } from "./api";
+import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet-async";
 import Loader from "../components/Loader";
 import ChangeTheme from "../components/ChangeTheme";
@@ -84,7 +84,7 @@ const Coins = () => {
             <Coin key={coin.id}>
               <Link
                 to={{
-                  pathname: `/${coin.id}/chart`,
+                  pathname: `/${coin.id}/chart/line`,
                   state: { name: coin.name },
                 }}
               >

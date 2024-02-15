@@ -10,7 +10,7 @@ import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
 import { useQuery } from "react-query";
-import { fetchCoinInfo, fetchCoinTickers } from "./api";
+import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet } from "react-helmet-async";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -89,7 +89,7 @@ const Tab = styled.span<{ $isActive: boolean }>`
   }
 `;
 
-interface RouteParams {
+export interface RouteParams {
   coinId: string;
 }
 interface RouteState {
@@ -229,7 +229,7 @@ function Coin() {
             <Route path={`/:coinId/price`}>
               <Price />
             </Route>
-            <Route path={`/:coinId/chart`}>
+            <Route path={`/:coinId/chart/line`}>
               <Chart coinId={coinId} />
             </Route>
           </Switch>

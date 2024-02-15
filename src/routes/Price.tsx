@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { fetchCoinTickers } from "./api";
+import { fetchCoinTickers } from "../api";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -34,8 +34,9 @@ const TopPriceColumn = styled.div`
   h2 {
     display: block;
     font-weight: 600;
+    font-size: 18px;
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 43%;
     color: ${(props) => props.theme.accentColor};
     padding-bottom: 20px;
@@ -138,10 +139,6 @@ const Price = () => {
             <TopPrice>${priceData?.quotes.USD.ath_price.toFixed(4)}</TopPrice>
           </TopPriceColumn>
           <PriceDateColumn>
-            <h3>from 6h ago</h3>
-            {renderChange(priceData?.quotes.USD.percent_change_6h)}
-          </PriceDateColumn>
-          <PriceDateColumn>
             <h3>from 24h ago</h3>
             {renderChange(priceData?.quotes.USD.percent_change_24h)}
           </PriceDateColumn>
@@ -152,6 +149,10 @@ const Price = () => {
           <PriceDateColumn>
             <h3>from 30d ago</h3>
             {renderChange(priceData?.quotes.USD.percent_change_30d)}
+          </PriceDateColumn>
+          <PriceDateColumn>
+            <h3>from 1y ago</h3>
+            {renderChange(priceData?.quotes.USD.percent_change_1y)}
           </PriceDateColumn>
         </Container>
       )}
