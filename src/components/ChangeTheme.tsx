@@ -12,9 +12,8 @@ const ThemeBtn = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 5px;
+  right: 0px;
   font-size: 25px;
-
   color: ${(props) => props.theme.accentColor};
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;

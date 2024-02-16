@@ -13,16 +13,38 @@ import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet } from "react-helmet-async";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Loader";
 import ChangeTheme from "../components/ChangeTheme";
 
 const Title = styled.h1`
   font-size: 38px;
   font-weight: 600;
+  width: 300px;
+  flex-wrap: wrap;
+  text-align: center;
   color: ${(props) => props.theme.accentColor};
   position: relative;
-  left: -10px;
+  left: -4px;
+`;
+
+const HomeBtn = styled.div`
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -27px;
+  font-size: 25px;
+  color: ${(props) => props.theme.accentColor};
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  background-color: ${(props) => props.theme.boxColor};
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 const Container = styled.div`
@@ -63,6 +85,14 @@ const OverviewItem = styled.div`
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 5px;
+  }
+  #symbol {
+    position: relative;
+    right: -13px;
+  }
+  #symbolData {
+    position: relative;
+    right: -11px;
   }
 `;
 
@@ -175,7 +205,9 @@ function Coin() {
       </Helmet>
       <Header>
         <Link to="/">
-          <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+          <HomeBtn>
+            <FontAwesomeIcon icon={faHome} />
+          </HomeBtn>
         </Link>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
@@ -192,8 +224,8 @@ function Coin() {
               <span>{infoData?.rank}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Symbol:</span>
-              <span>${infoData?.symbol}</span>
+              <span id="symbol">Symbol:</span>
+              <span id="symbolData">${infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>

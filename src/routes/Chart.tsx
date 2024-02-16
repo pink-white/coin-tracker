@@ -54,7 +54,7 @@ const ChartName = styled.div`
   align-items: center;
   font-weight: 600;
   font-size: 14px;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
 `;
 
 interface ChartProps {
