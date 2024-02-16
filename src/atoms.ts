@@ -5,7 +5,7 @@ export const darkAtom = atom({
   default: true,
 });
 
-export const chart = atom({
-  key: "isCandleStick",
+export const candleChartState = atom({
+  key: "isCandle",
   default: false,
 });

@@ -42,7 +42,7 @@ const Candle = () => {
               name: "Price",
               data: data?.map((price) => {
                 return {
-                  x: price.time_close,
+                  x: new Date(price.time_close * 1000).toISOString(),
                   y: [price.open, price.high, price.low, price.close],
                 };
               }),

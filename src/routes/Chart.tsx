@@ -4,6 +4,8 @@ import { faChartLine, faChartSimple } from "@fortawesome/free-solid-svg-icons";
 import Candle from "../components/CandleStick";
 import { Link, Route, Switch } from "react-router-dom";
 import Line from "../components/LineChart";
+import { useRecoilState } from "recoil";
+import { candleChartState } from "../atoms";
 
 const ChartChange = styled.div`
   width: 110px;
@@ -38,7 +40,7 @@ const ChartIconBox = styled.div`
   }
 `;
 const ChartName = styled.div`
-  width: 55px;
+  width: 65px;
   height: 40px;
   background-color: ${(props) => props.theme.boxColor};
   position: absolute;
@@ -59,7 +61,7 @@ interface ChartProps {
   coinId: string;
 }
 
-//* using apex-chart
+//* using apex chart
 export interface IHistorical {
   time_open: string;
   time_close: number;
@@ -72,31 +74,24 @@ export interface IHistorical {
 }
 
 const Chart = ({ coinId }: ChartProps) => {
+  const [isCandle, setIsCandle] = useRecoilState(candleChartState);
+  const changeLine = () => setIsCandle(false);
+  const changeCandle = () => setIsCandle(true);
+
   return (
     <div>
       <div>
         <ChartChange>
-          <Link to={`/${coinId}/chart/line`}>
-            <ChartIconBox>
-              <FontAwesomeIcon icon={faChartLine} />
-              <ChartName>Line</ChartName>
-            </ChartIconBox>
-          </Link>
-          <Link to={`/${coinId}/chart/candle`}>
-            <ChartIconBox>
-              <FontAwesomeIcon icon={faChartSimple} />
-              <ChartName>Candle</ChartName>
-            </ChartIconBox>
-          </Link>
+          <ChartIconBox onClick={changeLine}>
+            <FontAwesomeIcon icon={faChartLine} />
+            <ChartName>Line</ChartName>
+          </ChartIconBox>
+          <ChartIconBox onClick={changeCandle}>
+            <FontAwesomeIcon icon={faChartSimple} />
+            <ChartName>Candle</ChartName>
+          </ChartIconBox>
         </ChartChange>
-        <Switch>
-          <Route path={`/:coinId/chart/candle`}>
-            <Candle />
-          </Route>
-          <Route path={`/:coinId/chart/line`}>
-            <Line />
-          </Route>
-        </Switch>
+        {isCandle ? <Candle /> : <Line />}
       </div>
     </div>
   );
